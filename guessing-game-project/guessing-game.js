@@ -1,81 +1,107 @@
 const readline = require("readline");
+const { stdout } = require("process");
 
-// create an interface where we can talk to the user
 const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
+    input: process.stdin,
+    output: process.stdout
 });
 
-const seceretNumber = randomInRange;
-/*
-// ask the user a question
-rl.question("What's up, doc? ", answer => {
-    // print their response
-    console.log("you responded: " + answer);
-    // close the interface
-    rl.close();
-  });
-
-rl.question("What's up, doc? ", handleResponseOne);
-
-function handleResponseOne(firstAnswer) {
-  console.log(firstAnswer + " is up.");
-  rl.question("What's down, clown? ", handleResponseTwo);
-}
-
-function handleResponseTwo(secondAnswer) {
-  console.log(secondAnswer + " is down.");
-  rl.question("What's left, Jeff? ", handleResponseThree);
-}
-
-function handleResponseThree(thirdAnswer) {
-  console.log(thirdAnswer + " is left.");
-  rl.close();
-}
-*/
-
-/*
-to do:
-
-function settings() {
-    rl.question("How many guesses would you like?", guesses => {
-        
-    })
-}
-
-check for negative input numbers
-*/
-
-
+let seceretNumber;
+let range = [0, 0];
+let remainingGuesses;
 function checkGuess(num) {
     if (seceretNumber < num) {
-        console.log('Too High.');
-        return false
-    }else if(seceretNumber > num){
-        console.log('Too Low.')
-        return false
-    }else if(seceretNumber == num){
-        console.log('Correct!');
-        return true;
+        return [false, 'high']
+    } else if (seceretNumber > num) {
+        return [false, 'low']
+    } else if (seceretNumber == num) {
+        return [true]
     }
 }
-function randomInRange(min, max){
+
+function winnerFunction() {
+    let winnerMessage = '......................my god\n..............you\'ve done it\n........you absolute mad lad\n\n\n\n██╗   ██╗ ██████╗ ██╗   ██╗\n╚██╗ ██╔╝██╔═══██╗██║   ██║\n ╚████╔╝ ██║   ██║██║   ██║\n  ╚██╔╝  ██║   ██║██║   ██║\n   ██║   ╚██████╔╝╚██████╔╝\n   ╚═╝    ╚═════╝  ╚═════╝ \n██╗    ██╗██╗███╗   ██╗██╗ \n██║    ██║██║████╗  ██║██║ \n██║ █╗ ██║██║██╔██╗ ██║██║ \n██║███╗██║██║██║╚██╗██║╚═╝ \n╚███╔███╔╝██║██║ ╚████║██╗ \n ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝\n\n\n\n'
+    messageCrawl(winnerMessage, 10)
+    rl.close()
+}
+
+function gameOver() {
+    let loserMessage = '\n\n\nSorry, but it appears.........\n\n\n\n▓██   ██▓ ▒█████   █    ██                \n ▒██  ██▒▒██▒  ██▒ ██  ▓██▒               \n  ▒██ ██░▒██░  ██▒▓██  ▒██░               \n  ░ ▐██▓░▒██   ██░▓▓█  ░██░               \n  ░ ██▒▓░░ ████▓▒░▒▒█████▓                \n   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒                \n ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░                \n ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░                \n ░ ░         ░ ░     ░                    \n ░ ░                                      \n ▄▄▄       ██▀███  ▓█████                 \n▒████▄    ▓██ ▒ ██▒▓█   ▀                 \n▒██  ▀█▄  ▓██ ░▄█ ▒▒███                   \n░██▄▄▄▄██ ▒██▀▀█▄  ▒▓█  ▄                 \n ▓█   ▓██▒░██▓ ▒██▒░▒████▒                \n ▒▒   ▓▒█░░ ▒▓ ░▒▓░░░ ▒░ ░                \n  ▒   ▒▒ ░  ░▒ ░ ▒░ ░ ░  ░                \n  ░   ▒     ░░   ░    ░                   \n      ░  ░   ░        ░  ░                \n                                          \n ▄▄▄                                      \n▒████▄                                    \n▒██  ▀█▄                                  \n░██▄▄▄▄██                                 \n ▓█   ▓██▒                                \n ▒▒   ▓▒█░                                \n  ▒   ▒▒ ░                                \n  ░   ▒                                   \n      ░  ░                                \n                                          \n ██▓     ▒█████    ██████ ▓█████  ██▀███  \n▓██▒    ▒██▒  ██▒▒██    ▒ ▓█   ▀ ▓██ ▒ ██▒\n▒██░    ▒██░  ██▒░ ▓██▄   ▒███   ▓██ ░▄█ ▒\n▒██░    ▒██   ██░  ▒   ██▒▒▓█  ▄ ▒██▀▀█▄  \n░██████▒░ ████▓▒░▒██████▒▒░▒████▒░██▓ ▒██▒\n░ ▒░▓  ░░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░░░ ▒░ ░░ ▒▓ ░▒▓░\n░ ░ ▒  ░  ░ ▒ ▒░ ░ ░▒  ░ ░ ░ ░  ░  ░▒ ░ ▒░\n  ░ ░   ░ ░ ░ ▒  ░  ░  ░     ░     ░░   ░ \n    ░  ░    ░ ░        ░     ░  ░   ░     \n\n\n\n'
+    messageCrawl(loserMessage, 5)
+    rl.close();
+}
+
+function randomInRange(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+
 function askRange() {
-    
+
+    let enterMinimum = (str) => rl.question('', answer => {
+
+        if (Number(answer) >= 0) {
+            range[0] = Number(answer)
+            let enterMaximum = (str) => rl.question('', answer => {
+                if (Number(answer) > range[0]) {
+                    range[1] = Number(answer)
+                    seceretNumber = randomInRange(...range)
+                    return askGuessCount()
+                } else {
+                    enterMaximum(`Number must be greater than ${range[0]}. Try again: `)
+                }
+            }, messageCrawl(str))
+            enterMaximum(`Enter a maximum number greater than ${range[0]}: `)
+        } else {
+            enterMinimum('Number must be greater or equal to zero. Try again: ')
+        }
+    }, messageCrawl(str));
+    enterMinimum('Enter a minimum number greater than or equal to zero: ')
 }
+
+function messageCrawl(inputString, speed = 40) {
+    let index = 0
+    let printer = setInterval(() => {
+        process.stdout.write(inputString[index])
+        index++
+        if (index === inputString.length) {
+            clearInterval(printer)
+        }
+    }, speed)
+}
+
+function askGuessCount() {
+    let enterGuesses = (str) => rl.question('', answer => {
+        if (Number(answer) > 0) {
+            remainingGuesses = Number(answer)
+            return askGuess()
+        } else {
+            enterGuesses('Must be a number greater than zero! Try again: ')
+        }
+    }, messageCrawl(str))
+    enterGuesses('Enter number of guesses you would like: ')
+}
+
+function pluralGuess() {
+    if (remainingGuesses === 1) {
+        return ''
+    } else {
+        return 'es'
+    }
+}
+
 function askGuess() {
 
-    rl.question("Enter a guess ", answer => {
-        if (checkGuess(Number(answer))) {
-            console.log('You Win!')
-            rl.close();
+    let enterGuess = (str) => rl.question('', answer => {
+        if (checkGuess(Number(answer))[0]) {
+            winnerFunction()
+        } else if (remainingGuesses === 1) {
+            gameOver()
         } else {
-            askGuess()
+            remainingGuesses--
+            enterGuess(`Too ${checkGuess(Number(answer))[1]}. You have ${remainingGuesses} guess${pluralGuess()} left. Try again: `)
         };
-        
-    });
+    }, messageCrawl(str));
+    enterGuess('Enter a guess: ')
 }
 
-// askGuess()
+askRange()
