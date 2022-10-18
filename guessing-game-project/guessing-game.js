@@ -1,3 +1,5 @@
+const colors = require('colors')
+const art = require('ascii-art')
 const readline = require("readline");
 const { stdout } = require("process");
 
@@ -20,13 +22,13 @@ function checkGuess(num) {
 }
 
 function winnerFunction() {
-    let winnerMessage = '......................my god\n..............you\'ve done it\n........you absolute mad lad\n\n\n\n██╗   ██╗ ██████╗ ██╗   ██╗\n╚██╗ ██╔╝██╔═══██╗██║   ██║\n ╚████╔╝ ██║   ██║██║   ██║\n  ╚██╔╝  ██║   ██║██║   ██║\n   ██║   ╚██████╔╝╚██████╔╝\n   ╚═╝    ╚═════╝  ╚═════╝ \n██╗    ██╗██╗███╗   ██╗██╗ \n██║    ██║██║████╗  ██║██║ \n██║ █╗ ██║██║██╔██╗ ██║██║ \n██║███╗██║██║██║╚██╗██║╚═╝ \n╚███╔███╔╝██║██║ ╚████║██╗ \n ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝\n\n\n\n'
+    let winnerMessage = '......................my god\n..............you\'ve done it\n........you absolute mad lad\n\n\n\n██╗   ██╗ ██████╗ ██╗   ██╗\n╚██╗ ██╔╝██╔═══██╗██║   ██║\n ╚████╔╝ ██║   ██║██║   ██║\n  ╚██╔╝  ██║   ██║██║   ██║\n   ██║   ╚██████╔╝╚██████╔╝\n   ╚═╝    ╚═════╝  ╚═════╝ \n██╗    ██╗██╗███╗   ██╗██╗ \n██║    ██║██║████╗  ██║██║ \n██║ █╗ ██║██║██╔██╗ ██║██║ \n██║███╗██║██║██║╚██╗██║╚═╝ \n╚███╔███╔╝██║██║ ╚████║██╗ \n ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═╝\n\n\n\n'.green
     messageCrawl(winnerMessage, 10)
     rl.close()
 }
 
 function gameOver() {
-    let loserMessage = '\n\n\nSorry, but it appears.........\n\n\n\n▓██   ██▓ ▒█████   █    ██                \n ▒██  ██▒▒██▒  ██▒ ██  ▓██▒               \n  ▒██ ██░▒██░  ██▒▓██  ▒██░               \n  ░ ▐██▓░▒██   ██░▓▓█  ░██░               \n  ░ ██▒▓░░ ████▓▒░▒▒█████▓                \n   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒                \n ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░                \n ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░                \n ░ ░         ░ ░     ░                    \n ░ ░                                      \n ▄▄▄       ██▀███  ▓█████                 \n▒████▄    ▓██ ▒ ██▒▓█   ▀                 \n▒██  ▀█▄  ▓██ ░▄█ ▒▒███                   \n░██▄▄▄▄██ ▒██▀▀█▄  ▒▓█  ▄                 \n ▓█   ▓██▒░██▓ ▒██▒░▒████▒                \n ▒▒   ▓▒█░░ ▒▓ ░▒▓░░░ ▒░ ░                \n  ▒   ▒▒ ░  ░▒ ░ ▒░ ░ ░  ░                \n  ░   ▒     ░░   ░    ░                   \n      ░  ░   ░        ░  ░                \n                                          \n ▄▄▄                                      \n▒████▄                                    \n▒██  ▀█▄                                  \n░██▄▄▄▄██                                 \n ▓█   ▓██▒                                \n ▒▒   ▓▒█░                                \n  ▒   ▒▒ ░                                \n  ░   ▒                                   \n      ░  ░                                \n                                          \n ██▓     ▒█████    ██████ ▓█████  ██▀███  \n▓██▒    ▒██▒  ██▒▒██    ▒ ▓█   ▀ ▓██ ▒ ██▒\n▒██░    ▒██░  ██▒░ ▓██▄   ▒███   ▓██ ░▄█ ▒\n▒██░    ▒██   ██░  ▒   ██▒▒▓█  ▄ ▒██▀▀█▄  \n░██████▒░ ████▓▒░▒██████▒▒░▒████▒░██▓ ▒██▒\n░ ▒░▓  ░░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░░░ ▒░ ░░ ▒▓ ░▒▓░\n░ ░ ▒  ░  ░ ▒ ▒░ ░ ░▒  ░ ░ ░ ░  ░  ░▒ ░ ▒░\n  ░ ░   ░ ░ ░ ▒  ░  ░  ░     ░     ░░   ░ \n    ░  ░    ░ ░        ░     ░  ░   ░     \n\n\n\n'
+    let loserMessage = '\n\n\nSorry, but it appears.........\n\n\n\n▓██   ██▓ ▒█████   █    ██                \n ▒██  ██▒▒██▒  ██▒ ██  ▓██▒               \n  ▒██ ██░▒██░  ██▒▓██  ▒██░               \n  ░ ▐██▓░▒██   ██░▓▓█  ░██░               \n  ░ ██▒▓░░ ████▓▒░▒▒█████▓                \n   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒                \n ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░                \n ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░                \n ░ ░         ░ ░     ░                    \n ░ ░                                      \n ▄▄▄       ██▀███  ▓█████                 \n▒████▄    ▓██ ▒ ██▒▓█   ▀                 \n▒██  ▀█▄  ▓██ ░▄█ ▒▒███                   \n░██▄▄▄▄██ ▒██▀▀█▄  ▒▓█  ▄                 \n ▓█   ▓██▒░██▓ ▒██▒░▒████▒                \n ▒▒   ▓▒█░░ ▒▓ ░▒▓░░░ ▒░ ░                \n  ▒   ▒▒ ░  ░▒ ░ ▒░ ░ ░  ░                \n  ░   ▒     ░░   ░    ░                   \n      ░  ░   ░        ░  ░                \n                                          \n ▄▄▄                                      \n▒████▄                                    \n▒██  ▀█▄                                  \n░██▄▄▄▄██                                 \n ▓█   ▓██▒                                \n ▒▒   ▓▒█░                                \n  ▒   ▒▒ ░                                \n  ░   ▒                                   \n      ░  ░                                \n                                          \n ██▓     ▒█████    ██████ ▓█████  ██▀███  \n▓██▒    ▒██▒  ██▒▒██    ▒ ▓█   ▀ ▓██ ▒ ██▒\n▒██░    ▒██░  ██▒░ ▓██▄   ▒███   ▓██ ░▄█ ▒\n▒██░    ▒██   ██░  ▒   ██▒▒▓█  ▄ ▒██▀▀█▄  \n░██████▒░ ████▓▒░▒██████▒▒░▒████▒░██▓ ▒██▒\n░ ▒░▓  ░░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░░░ ▒░ ░░ ▒▓ ░▒▓░\n░ ░ ▒  ░  ░ ▒ ▒░ ░ ░▒  ░ ░ ░ ░  ░  ░▒ ░ ▒░\n  ░ ░   ░ ░ ░ ▒  ░  ░  ░     ░     ░░   ░ \n    ░  ░    ░ ░        ░     ░  ░   ░     \n\n\n\n'.red
     messageCrawl(loserMessage, 5)
     rl.close();
 }
@@ -47,15 +49,15 @@ function askRange() {
                     seceretNumber = randomInRange(...range)
                     return askGuessCount()
                 } else {
-                    enterMaximum(`Number must be greater than ${range[0]}. Try again: `)
+                    enterMaximum(`Number must be greater than ${range[0].toString().green}. Try again: `.red)
                 }
             }, messageCrawl(str))
-            enterMaximum(`Enter a maximum number greater than ${range[0]}: `)
+            enterMaximum(`Enter a maximum number greater than ${range[0].toString().green}: `.blue)
         } else {
-            enterMinimum('Number must be greater or equal to zero. Try again: ')
+            enterMinimum('Number must be greater or equal to zero. Try again: '.red)
         }
     }, messageCrawl(str));
-    enterMinimum('Enter a minimum number greater than or equal to zero: ')
+    enterMinimum('Enter a minimum number greater than or equal to zero: '.blue)
 }
 
 function messageCrawl(inputString, speed = 40) {
@@ -75,10 +77,10 @@ function askGuessCount() {
             remainingGuesses = Number(answer)
             return askGuess()
         } else {
-            enterGuesses('Must be a number greater than zero! Try again: ')
+            enterGuesses('Must be a number greater than zero! Try again: '.red)
         }
     }, messageCrawl(str))
-    enterGuesses('Enter number of guesses you would like: ')
+    enterGuesses('Enter number of guesses you would like: '.blue)
 }
 
 function pluralGuess() {
@@ -98,10 +100,10 @@ function askGuess() {
             gameOver()
         } else {
             remainingGuesses--
-            enterGuess(`Too ${checkGuess(Number(answer))[1]}. You have ${remainingGuesses} guess${pluralGuess()} left. Try again: `)
+            enterGuess(`Too ${checkGuess(Number(answer))[1]}. You have ${remainingGuesses.toString().red} guess${pluralGuess()} left. Try again: `)
         };
     }, messageCrawl(str));
-    enterGuess('Enter a guess: ')
+    enterGuess('Enter a guess: '.blue)
 }
 
 askRange()
